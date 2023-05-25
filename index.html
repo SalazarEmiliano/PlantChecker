@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Plant Checker</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <ul class="menu">
+          <li>Home</li>
+          <li>Plant Identification</li>
+          <li>Plant Information</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h2>Plant information</h2>
+        <div id="plant-search">
+          <label for="plant-name">Search for a plant:</label>
+          <input
+            type="text"
+            name="plant-name"
+            id="plant-name"
+            list="plant-results"
+          />
+          <datalist id="plant-results"></datalist>
+          <button id="search-btn">Search</button>
+        </div>
+        <div id="search-results"></div>
+      </section>
+      <section>
+        <h2>Plant Identification</h2>
+        <input type="file" id="plant-image" accept="image/*" />
+        <button id="identify-button">Identify Plant</button>
+        <div id="results"></div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2023 Plant Nation</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
