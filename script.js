@@ -179,7 +179,7 @@ else {
 
 searchInput.addEventListener('input', () => {
  const plantName = searchInput.value;
- fetch(`http://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
+ fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
  .then((response) => response.json())
  .then((data) => {
  if (data.data) {
@@ -198,13 +198,13 @@ searchInput.addEventListener('input', () => {
 
 searchBtn.addEventListener('click', () => {
  const plantName = searchInput.value;
- fetch(`http://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
+ fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
  .then((response) => response.json())
  .then((data) => {
  searchResults.innerHTML = ''; 
  data.data.forEach((plant) => {
  if (plant.common_name === plantName) {
- fetch(`http://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/${plant.id}?token=${trefleToken}`)
+ fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/${plant.id}?token=${trefleToken}`)
  .then((response) =>
  response.json()
  )
@@ -455,14 +455,14 @@ searchBtn.addEventListener('click', () => {
 
 function suggestionDisplay(suggestion) {
     const plantName = suggestion;
-    fetch(`http://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
+    fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
     .then((response) => response.json())
     .then((data) => {
     searchResults.innerHTML = '';
     data.data.forEach((plant) => {
         
     if (plant.scientific_name === plantName) {
-    fetch(`http://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/${plant.id}?token=${trefleToken}`)
+    fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/${plant.id}?token=${trefleToken}`)
     .then((response) =>
     response.json()
     )
