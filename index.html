@@ -9,7 +9,7 @@
   </head>
   <body>
     <header class="header">
-      <nav>
+      <nav id="nav-bar">
         <ul class="menu">
           <li>Home</li>
           <li>Plant Identification</li>
@@ -18,7 +18,7 @@
       </nav>
     </header>
     <main>
-      <section>
+      <section class="display-results">
         <h2>Plant information</h2>
         <div id="plant-search">
           <label for="plant-name">Search for a plant:</label>
@@ -33,12 +33,13 @@
         </div>
         <div id="search-results"></div>
       </section>
-      <section>
+      <section class="display-results">
         <h2>Plant Identification</h2>
         <input type="file" id="plant-image" accept="image/*" />
         <button id="identify-button">Identify Plant</button>
         <div id="results"></div>
       </section>
+      <div id="result-container"></div>
     </main>
     <footer class="footer">
       <p>&copy; 2023 Plant Nation</p>

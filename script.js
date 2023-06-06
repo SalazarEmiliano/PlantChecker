@@ -47,6 +47,9 @@ async function identifyPlant(imageData) {
 }
 
 function displayResults(data) {
+    if(data.is_plant == true) {
+
+    
  // Clear the results div
  resultsDiv.innerHTML = '';
 
@@ -120,6 +123,8 @@ function displayResults(data) {
  document.createElement('ul');
  resultsDiv.appendChild(suggestionsList);
 
+
+ suggestionDisplay(data.suggestions[0].plant_name);
  // Add each suggestion to the list
  data.suggestions.forEach(suggestion => {
  const suggestionItem =
@@ -128,10 +133,8 @@ function displayResults(data) {
  `${suggestion.plant_name} (${suggestion.probability.toFixed(2)})`;
  suggestionsList.appendChild(suggestionItem);
 
- //Test
- 
- console.log(suggestion.plant_name);
- suggestionDisplay(suggestion.plant_name);
+ //Test 
+ //suggestionDisplay(suggestion.plant_name);
  //
  // Create a sublist for the plant details
  const detailsList =
@@ -167,6 +170,11 @@ function displayResults(data) {
  }
  }
  });
+
+}
+else {
+    alert("The image does not contain a plant");
+}
 }
 
 searchInput.addEventListener('input', () => {
@@ -193,7 +201,7 @@ searchBtn.addEventListener('click', () => {
  fetch(`https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
  .then((response) => response.json())
  .then((data) => {
- searchResults.innerHTML = '';
+ searchResults.innerHTML = ''; 
  data.data.forEach((plant) => {
  if (plant.common_name === plantName) {
  fetch(`https://trefle.io/api/v1/plants/${plant.id}?token=${trefleToken}`)
@@ -434,6 +442,7 @@ searchBtn.addEventListener('click', () => {
     }
    
     searchResults.appendChild(div);
+
 })
 .catch((error) => console.log(error));
 }
@@ -444,7 +453,7 @@ searchBtn.addEventListener('click', () => {
 
 //
 
-function suggestionDisplay (suggestion) {
+function suggestionDisplay(suggestion) {
     const plantName = suggestion;
     fetch(`https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
     .then((response) => response.json())
