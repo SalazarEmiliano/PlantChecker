@@ -1,4 +1,4 @@
-const plantIdApiKey = 'NlhJDleLT2yZB0KF80Z5AgnwqlC5eSWOGyhqAGTn0DkeGHimHy';
+const plantIdApiKey = 'cYPLT9EPbyWDJkC0gGSiiCZBc2iiFfx4pIl59e0tVBS4tdQp0X';
 const trefleToken = '2UQXif_l_DRFs5YJw51OdSUGki1t_NBrvUGkSWyp1hY';
 const searchInput = document.querySelector('#plant-name');
 
@@ -10,6 +10,18 @@ const identifyButton = document.querySelector("#identify-button");
 const resultsDiv = document.querySelector("#results");
 
 const plantImageInput = document.querySelector('#plant-image');
+
+const restartButton = document.querySelector("#restart-button");
+
+restartButton.addEventListener("click", () => {
+  // Clear the results div and reset the search input
+  resultsDiv.innerHTML = "";
+  searchInput.value = "";
+  searchResults.innerHTML = "";
+  plantResults.innerHTML = "";
+});
+
+
 
 identifyButton.addEventListener("click", async () => {
  const file = plantImageInput.files[0];
@@ -27,7 +39,7 @@ identifyButton.addEventListener("click", async () => {
  reader.readAsDataURL(file);
 });
 
-const apiKey = "NlhJDleLT2yZB0KF80Z5AgnwqlC5eSWOGyhqAGTn0DkeGHimHy";
+const apiKey = "cYPLT9EPbyWDJkC0gGSiiCZBc2iiFfx4pIl59e0tVBS4tdQp0X";
 const plantIdUrl = "https://api.plant.id/v2/identify";
 
 async function identifyPlant(imageData) {
@@ -53,70 +65,7 @@ function displayResults(data) {
  // Clear the results div
  resultsDiv.innerHTML = '';
 
- // Create a heading for the identification result
- const resultHeading = document.createElement('h2');
- resultHeading.textContent = 'Identification Result';
- resultsDiv.appendChild(resultHeading);
-
- // Create a list for the identification result details
- const resultList = document.createElement('ul');
- resultsDiv.appendChild(resultList);
-
- // Add the ID to the result list
- const idItem = document.createElement('li');
- idItem.textContent = `ID: ${data.id}`;
- resultList.appendChild(idItem);
-
- // Add the custom ID to the result list
- const customIdItem = document.createElement('li');
- customIdItem.textContent = `Custom ID: ${data.custom_id}`;
- resultList.appendChild(customIdItem);
-
- // Add the metadata to the result list
- const metaDataItem = document.createElement('li');
- metaDataItem.textContent = `Metadata: ${JSON.stringify(data.meta_data)}`;
- resultList.appendChild(metaDataItem);
-
- // Add the uploaded datetime to the result list
- const uploadedDatetimeItem = document.createElement('li');
- const uploadedDatetime = new Date(data.uploaded_datetime * 1000);
- uploadedDatetimeItem.textContent =
- `Uploaded: ${uploadedDatetime.toLocaleString()}`;
- resultList.appendChild(uploadedDatetimeItem);
-
- // Add the finished datetime to the result list
- const finishedDatetimeItem =
- document.createElement('li');
- const finishedDatetime =
- new Date(data.finished_datetime * 1000);
- finishedDatetimeItem.textContent =
- `Finished: ${finishedDatetime.toLocaleString()}`;
- resultList.appendChild(finishedDatetimeItem);
-
- // Add other properties to the result list
- for (const [key, value] of Object.entries(data)) {
- if (
- key !== 'id' &&
- key !== 'custom_id' &&
- key !== 'meta_data' &&
- key !== 'suggestions' &&
- key !== 'uploaded_datetime' &&
- key !== 'finished_datetime'
- ) {
- const propertyItem =
- document.createElement('li');
- propertyItem.textContent =
- `${key}: ${JSON.stringify(value)}`;
- resultList.appendChild(propertyItem);
- }
- }
-
- // Create a heading for the plant name
- const plantNameHeading =
- document.createElement('h2');
- plantNameHeading.textContent =
- 'Plant Name';
- resultsDiv.appendChild(plantNameHeading);
+ 
 
  // Create a list for the plant suggestions
  const suggestionsList =
@@ -127,48 +76,7 @@ function displayResults(data) {
  suggestionDisplay(data.suggestions[0].plant_name);
  // Add each suggestion to the list
  data.suggestions.forEach(suggestion => {
- const suggestionItem =
- document.createElement('li');
- suggestionItem.textContent =
- `${suggestion.plant_name} (${suggestion.probability.toFixed(2)})`;
- suggestionsList.appendChild(suggestionItem);
 
- //Test 
- //suggestionDisplay(suggestion.plant_name);
- //
- // Create a sublist for the plant details
- const detailsList =
- document.createElement('ul');
- suggestionItem.appendChild(detailsList);
-
- // Add the scientific name to the details list
- const scientificNameItem =
- document.createElement('li');
- scientificNameItem.textContent =
- `Scientific Name: ${suggestion.plant_details.scientific_name}`;
- detailsList.appendChild(scientificNameItem);
-
- // Add the structured name to the details list
- const structuredNameItem =
- document.createElement('li');
- structuredNameItem.textContent =
- `Structured Name: ${JSON.stringify(suggestion.plant_details.structured_name)}`;
- detailsList.appendChild(structuredNameItem);
-
- // Add other properties to the details list
- for (const [key, value] of Object.entries(suggestion)) {
- if (
- key !== 'plant_name' &&
- key !== 'plant_details' &&
- key !== 'probability'
- ) {
- const propertyItem =
- document.createElement('li');
- propertyItem.textContent =
- `${key}: ${JSON.stringify(value)}`;
- detailsList.appendChild(propertyItem);
- }
- }
  });
 
 }
@@ -351,13 +259,7 @@ searchBtn.addEventListener('click', () => {
     imagesHTML += `<img src="${image.image_url}" alt="Habit" />`;
     });
     }
-    if (images.other && images.other.length > 0) {
-    hasImages = true;
-    imagesHTML += '<h4>Other</h4>';
-    images.other.forEach((image) => {
-    imagesHTML += `<img src="${image.image_url}" alt="Other" />`;
-    });
-    }
+    
    
     if (hasImages) {
     div.innerHTML += imagesHTML;
@@ -437,9 +339,9 @@ searchBtn.addEventListener('click', () => {
     }
    
     // Plant Image
-    if (data.data.image_url) {
+   /*  if (data.data.image_url) {
     div.innerHTML += `<img src="${data.data.image_url}" alt="${plant.common_name}"/>`;
-    }
+    } */
    
     searchResults.appendChild(div);
 

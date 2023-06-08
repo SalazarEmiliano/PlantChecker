@@ -5,21 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Plant Checker</title>
+    <title>Plant Nation</title>
   </head>
   <body>
     <header class="header">
       <nav id="nav-bar">
-        <ul class="menu">
-          <li>Home</li>
-          <li>Plant Identification</li>
-          <li>Plant Information</li>
-        </ul>
-      </nav>
+        <h1>Plant Nation</h1>
     </header>
     <main>
+      <p>Welcome to Plant Nation! Here you can identify a plant and get details about it.
+        <br>
+        You can also search for a specific plant using the search function.
+        <br>
+        Enjoy!
+      </p>
       <section class="display-results">
-        <h2>Plant information</h2>
+        <h2>Plant Identification</h2>
+        <input type="file" id="plant-image" accept="image/*" />
+        <button id="identify-button">Identify Plant</button>
+        <div id="results"></div>
+      </section>
+      <section class="display-results">
         <div id="plant-search">
           <label for="plant-name">Search for a plant:</label>
           <input
@@ -29,17 +35,13 @@
             list="plant-results"
           />
           <datalist id="plant-results"></datalist>
-          <button id="search-btn">Search</button>
+          <div id="search-buttons-container">
+            <button id="search-btn">Search</button>
+            <button id="restart-button">Restart</button>
+          </div>
         </div>
         <div id="search-results"></div>
       </section>
-      <section class="display-results">
-        <h2>Plant Identification</h2>
-        <input type="file" id="plant-image" accept="image/*" />
-        <button id="identify-button">Identify Plant</button>
-        <div id="results"></div>
-      </section>
-      <div id="result-container"></div>
     </main>
     <footer class="footer">
       <p>&copy; 2023 Plant Nation</p>
