@@ -29,6 +29,8 @@ identifyButton.addEventListener("click", async () => {
  alert("Please select an image of a plant.");
  return;
  }
+ document.querySelector("#loading-message").style.display = "block";
+
  const reader = new FileReader();
  reader.onload = async (event) => {
  const imageData = event.target.result;
@@ -61,11 +63,11 @@ async function identifyPlant(imageData) {
 function displayResults(data) {
     if(data.is_plant == true) {
 
-    
+        document.querySelector("#loading-message").style.display = "none";
+
  // Clear the results div
  resultsDiv.innerHTML = '';
 
- 
 
  // Create a list for the plant suggestions
  const suggestionsList =
@@ -81,7 +83,8 @@ function displayResults(data) {
 
 }
 else {
-    alert("The image does not contain a plant");
+    document.querySelector("#loading-message").style.display = "none";
+    searchResults.innerHTML = "It looks that the image doesn't contain a plant, please try again";
 }
 }
 
@@ -105,6 +108,7 @@ searchInput.addEventListener('input', () => {
 });
 
 searchBtn.addEventListener('click', () => {
+    document.querySelector("#loading-message").style.display = "block";
  const plantName = searchInput.value;
  fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
  .then((response) => response.json())
@@ -344,6 +348,8 @@ searchBtn.addEventListener('click', () => {
     } */
    
     searchResults.appendChild(div);
+    document.querySelector("#loading-message").style.display = "none";
+
 
 })
 .catch((error) => console.log(error));
