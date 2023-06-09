@@ -108,7 +108,7 @@ searchInput.addEventListener('input', () => {
 });
 
 searchBtn.addEventListener('click', () => {
-    document.querySelector("#loading-message").style.display = "block";
+    
  const plantName = searchInput.value;
  fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/search?token=${trefleToken}&q=${plantName}&complete_data=true`)
  .then((response) => response.json())
@@ -116,6 +116,7 @@ searchBtn.addEventListener('click', () => {
  searchResults.innerHTML = ''; 
  data.data.forEach((plant) => {
  if (plant.common_name === plantName) {
+    document.querySelector("#loading-message").style.display = "block";
  fetch(`https://api.scraperapi.com?api_key=7528bd8aa22a4965cb1bbd57e210529f&url=https://trefle.io/api/v1/plants/${plant.id}?token=${trefleToken}`)
  .then((response) =>
  response.json()
